@@ -11,10 +11,12 @@ public class SceneLoader : MonoBehaviour
 
     // cached references
     GameSession gameSession;
+    MusicPlayer musicPlayer;
 
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        musicPlayer = FindObjectOfType<MusicPlayer>();
     }
 
     public void LoadNextScene()
@@ -26,6 +28,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadFirstScene()
     {
         gameSession.ResetGame();
+        musicPlayer.ChangeTrack((int)MusicPlayer.TrackEnumerator.mainMenu);
         SceneManager.LoadScene(0);
     }
 
@@ -54,5 +57,6 @@ public class SceneLoader : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToDelayNextScene);
         LoadSceneByName("Death Screen");
+        musicPlayer.PlayGameOverTrack();
     }
 }

@@ -11,6 +11,15 @@ public class MusicPlayer : MonoBehaviour
     // components
     AudioSource audioSource;
 
+    // tracks enum (MUST UPDATE THIS AS NEW TRACKS ARE ADDED)
+    public enum TrackEnumerator: int
+    {
+        mainMenu = 0,
+        combat = 1,
+        gameOver = 2,
+        reaper = 3
+    }
+
     // Awake is called first
     void Awake()
     {
@@ -21,17 +30,15 @@ public class MusicPlayer : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        PickAudioClip();
-        audioSource.Play();
+        ChangeTrack((int) TrackEnumerator.mainMenu);
     }
 
-    private void PickAudioClip()
+    // called by classes that need to change the music
+    public void ChangeTrack(int trackNumber)
     {
-        // TODO - select track based on scene
-        //  MainMenu, Rules -> "Starship Troopers"
-        //  GameScreen -> "Combat"
-        //  DeathScreen -> "Death"
-        audioSource.clip = tracks[0];
+        audioSource.loop = true;
+        audioSource.clip = tracks[trackNumber];
+        audioSource.Play();
     }
 
     private void SetUpSingleton()
@@ -46,5 +53,11 @@ public class MusicPlayer : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void PlayGameOverTrack()
+    {
+        ChangeTrack((int)TrackEnumerator.gameOver);
+        audioSource.loop = false;
     }
 }
