@@ -48,6 +48,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void LoadGameScene()
+    {
+        SceneManager.LoadScene("Game Screen");
+        musicPlayer.ChangeTrack((int)MusicPlayer.TrackEnumerator.combat);
+    }
+
     public void LoadGameOver()
     {
         StartCoroutine(DelayLoadGameOver());

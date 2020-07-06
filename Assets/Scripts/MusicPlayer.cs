@@ -55,6 +55,7 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    // unique function because it must turn off looping
     public void PlayGameOverTrack()
     {
         ChangeTrack((int)TrackEnumerator.gameOver);
