@@ -9,16 +9,27 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<WaveConfig> waveConfigs;
     [SerializeField] int startingWave = 0;
     [SerializeField] bool loopWaves = false;
+    [SerializeField] bool spawnRandomWaves = false;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        do
+        if (spawnRandomWaves)
         {
-            yield return StartCoroutine(SpawnAllWaves());
-        } 
-        while (loopWaves);
-        
+            do
+            {
+                yield return StartCoroutine(SpawnWavesRandomly());
+            }
+            while (loopWaves);
+        }
+        else
+        {
+            do
+            {
+                yield return StartCoroutine(SpawnAllWaves());
+            } 
+            while (loopWaves);
+        }
     }
 
     private IEnumerator SpawnAllWaves()
@@ -39,5 +50,13 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(waveConfig.GetTimeBetweenSpawns());
         }
+    }
+
+    private IEnumerator SpawnWavesRandomly()
+    {
+        // get a random wave index
+        int waveIndex = UnityEngine.Random.Range(0, waveConfigs.Count);
+        var currentWave = waveConfigs[waveIndex];
+        yield return StartCoroutine(SpawnEnemiesInWave(currentWave));
     }
 }
