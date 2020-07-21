@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6955272619828775901}
   - component: {fileID: 8010192936412762875}
   - component: {fileID: -8774094607203630557}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IonPulse16bit_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
