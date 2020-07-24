@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     // config variables
     [Header("Player Config")]
-    [SerializeField] int health = 100;
+    [SerializeField] int health = 3;
     [SerializeField] float xSpeed = 10f;
     [SerializeField] float ySpeed = 10f;
 
@@ -19,6 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject explosionFX;
     [SerializeField] float durationOfExplosion = 1f;
+
+    [Header("Health Bar")]
+    [SerializeField] Image[] healthBlocks;
 
     // coroutines
     Coroutine firingCoroutine;
@@ -49,6 +53,22 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        for (int i = 0; i < healthBlocks.Length; i++)
+        {
+            if (i < health)
+            {
+                healthBlocks[i].enabled = true;
+            }
+            else
+            {
+                healthBlocks[i].enabled = false;
+            }
+        }
     }
 
     private void SetUpMoveBoundaries()
@@ -128,6 +148,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        healthBlocks[0].enabled = false;                                                                   // hide last health block
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);                           // play death audio
         GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);           // play explosion effect
         Destroy(explosion, durationOfExplosion);                                                           // delete the particle effect after a second

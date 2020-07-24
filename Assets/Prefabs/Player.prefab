@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c89536edac36a44fbb3f43138005fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 3
   xSpeed: 10
   ySpeed: 10
   fireRate: 5
@@ -108,6 +108,10 @@ MonoBehaviour:
   explosionFX: {fileID: 259485080974740212, guid: e7c8d9d5f0fae904ea00607bfab9961e,
     type: 3}
   durationOfExplosion: 1
+  healthBlocks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &7451235765972916792
 BoxCollider2D:
   m_ObjectHideFlags: 0
