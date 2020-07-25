@@ -62,12 +62,17 @@ public class EnemyRebel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        HandleDamage(collision);
+    }
+
+    private void HandleDamage(Collision2D collision)
+    {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
 
         // take damgage
         health -= damageDealer.GetDamage();
-        
+
         // death
         if (health <= 0)
         {

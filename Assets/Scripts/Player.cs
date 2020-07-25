@@ -155,4 +155,24 @@ public class Player : MonoBehaviour
         sceneLoader.LoadGameOver();                                                                        // load death screen
         Destroy(gameObject);                                                                               // destroy player
     }
+
+    // getters
+    public float GetXSpeed()
+    {
+        return xSpeed;
+    }
+    public float GetYSpeed()
+    {
+        return ySpeed;
+    }
+
+    // setters
+    public void MultiplyXSpeed(float speedFactor)
+    {
+        xSpeed *= speedFactor;
+    }
+    public void MultiplyYSpeed(float speedFactor)
+    {
+        ySpeed *= speedFactor;
+    }
 }
