@@ -139,6 +139,10 @@ MonoBehaviour:
   durationOfExplosion: 1
   powerUps:
   - {fileID: 7196515815146442674, guid: c7bfbc1423753de4a96df57f33e595ac, type: 3}
+  - {fileID: 2906142781209808519, guid: 1a1548bfc27299d44b61aefe73feca0f, type: 3}
+  - {fileID: 5126870720661061955, guid: 6fa62f1209f6cab47a3451f39d812f84, type: 3}
+  - {fileID: 8898626533338311551, guid: 050878a764cef26458da887679ef8f04, type: 3}
+  - {fileID: 4441958471350477373, guid: 3f36a3d984173b34e8309b8ed56de40f, type: 3}
   percentChanceToDropPowerUp: 20
 --- !u!114 &1298856999
 MonoBehaviour:
