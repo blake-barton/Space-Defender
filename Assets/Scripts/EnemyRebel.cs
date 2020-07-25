@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyRebel : MonoBehaviour
@@ -21,6 +22,10 @@ public class EnemyRebel : MonoBehaviour
     [SerializeField] [Range(0, 1)] float deathAudioVolume;
     [SerializeField] GameObject explosionFX;
     [SerializeField] float durationOfExplosion = 1f;
+
+    [Header("PowerUps")]
+    [SerializeField] GameObject[] powerUps;
+    [SerializeField] int percentChanceToDropPowerUp = 20;
 
     // variables
     Vector3 projectileOffset = new Vector3(0, -1, 0);
@@ -73,9 +78,25 @@ public class EnemyRebel : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        SpawnPowerUp();
         GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);          // play explosion particle effect
         Destroy(explosion, durationOfExplosion);                                                          // delete the particle effect after a second
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position, deathAudioVolume);        // play death sound effect
         gameSession.AddToScore(scorePerKill);
+    }
+
+    private void SpawnPowerUp()
+    {
+        // chance to actually spawn a powerup
+        int dieRoll = UnityEngine.Random.Range(1, 101);
+        
+        if (dieRoll <= percentChanceToDropPowerUp)
+        {
+            // get a random powerup index
+            int powerUpIndex = UnityEngine.Random.Range(0, powerUps.Length);
+
+            // spawn the powerup
+            Instantiate(powerUps[powerUpIndex], transform.position, Quaternion.Euler(0, 0, 0));
+        }
     }
 }

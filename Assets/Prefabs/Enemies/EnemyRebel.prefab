@@ -137,6 +137,9 @@ MonoBehaviour:
   explosionFX: {fileID: 259485080974740212, guid: e7c8d9d5f0fae904ea00607bfab9961e,
     type: 3}
   durationOfExplosion: 1
+  powerUps:
+  - {fileID: 7196515815146442674, guid: c7bfbc1423753de4a96df57f33e595ac, type: 3}
+  percentChanceToDropPowerUp: 20
 --- !u!114 &1298856999
 MonoBehaviour:
   m_ObjectHideFlags: 0
