@@ -17,7 +17,6 @@ public class SpeedPowerUp : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object
         if (!player) { return; }                                        // return if the collision isn't a player
 
-        player.MultiplyXSpeed(speedFactor);
-        player.MultiplyYSpeed(speedFactor);
+        player.TriggerSpeedIncrease(speedFactor, secondsActivated);
     }
 }

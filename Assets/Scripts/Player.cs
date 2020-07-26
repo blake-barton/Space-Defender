@@ -194,7 +194,6 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(ActivateFireRateIncrease(playerFireRateMultiplier, secondsActivated));
     }
-
     private IEnumerator ActivateFireRateIncrease(float fireRateMultiplier, float secondsActivated)
     {
         // increase fire rate
@@ -205,6 +204,24 @@ public class Player : MonoBehaviour
 
         // reset
         MultiplyFireRate(1f / fireRateMultiplier);
+    }
+
+    public void TriggerSpeedIncrease(float speedMultiplier, float secondsActivated)
+    {
+        StartCoroutine(ActivateSpeedIncrease(speedMultiplier, secondsActivated));
+    }
+    private IEnumerator ActivateSpeedIncrease(float speedMultiplier, float secondsActivated)
+    {
+        // increase speed
+        MultiplyXSpeed(speedMultiplier);
+        MultiplyYSpeed(speedMultiplier);
+
+        // wait for timer
+        yield return new WaitForSeconds(secondsActivated * Time.timeScale);
+
+        // reset 
+        MultiplyXSpeed(1f / speedMultiplier);
+        MultiplyYSpeed(1f / speedMultiplier);
     }
 
     // getters
