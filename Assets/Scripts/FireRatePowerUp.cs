@@ -12,6 +12,6 @@ public class FireRatePowerUp : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object
         if (!player) { return; }                                        // return if the collision isn't a player
 
-        player.MultiplyFireRate(playerFireRateMultiplier);
+        player.TriggerFireRateIncrease(playerFireRateMultiplier, secondsActivated);
     }
 }

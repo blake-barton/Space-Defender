@@ -11,14 +11,6 @@ public class TimePowerUp : MonoBehaviour
     [SerializeField] float secondsActivated = 5f;
     [SerializeField] float musicPitchMultiplier = .5f;
 
-    // cached references
-    MusicPlayer musicPlayer;
-
-    private void Start()
-    {
-        musicPlayer = FindObjectOfType<MusicPlayer>();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("DeathFX")]
     [SerializeField] AudioClip deathAudio;
+
     [SerializeField] GameObject explosionFX;
     [SerializeField] float durationOfExplosion = 1f;
 
@@ -186,6 +188,23 @@ public class Player : MonoBehaviour
         MultiplyYSpeed(1f / playerSpeedMultiplier);
         MultiplyFireRate(1f / playerFireRateMultiplier);
         musicPlayer.MultiplyPitch(1f / musicPitchMultiplier);
+    }
+
+    public void TriggerFireRateIncrease(float playerFireRateMultiplier, float secondsActivated)
+    {
+        StartCoroutine(ActivateFireRateIncrease(playerFireRateMultiplier, secondsActivated));
+    }
+
+    private IEnumerator ActivateFireRateIncrease(float fireRateMultiplier, float secondsActivated)
+    {
+        // increase fire rate
+        MultiplyFireRate(fireRateMultiplier);
+
+        // wait for timer to go off
+        yield return new WaitForSeconds(secondsActivated * Time.timeScale);
+
+        // reset
+        MultiplyFireRate(1f / fireRateMultiplier);
     }
 
     // getters
