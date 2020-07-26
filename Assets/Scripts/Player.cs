@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     Camera gameCamera;
     BoxCollider2D playerCollider;
     SceneLoader sceneLoader;
+    MusicPlayer musicPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         SetUpMoveBoundaries();
         sceneLoader = FindObjectOfType<SceneLoader>();
+        musicPlayer = FindObjectOfType<MusicPlayer>();
     }
 
 
@@ -154,6 +156,36 @@ public class Player : MonoBehaviour
         Destroy(explosion, durationOfExplosion);                                                           // delete the particle effect after a second
         sceneLoader.LoadGameOver();                                                                        // load death screen
         Destroy(gameObject);                                                                               // destroy player
+    }
+
+    // PowerUp functions
+    public void TriggerSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated)
+    {
+        StartCoroutine(ActivateSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated));
+    }
+    private IEnumerator ActivateSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated)
+    {
+        // track current values
+        float originalTimeScale = Time.timeScale;
+
+        // change values
+        Time.timeScale = newTimeScale;
+        MultiplyXSpeed(playerSpeedMultiplier);
+        MultiplyYSpeed(playerSpeedMultiplier);
+        MultiplyFireRate(playerFireRateMultiplier);
+        musicPlayer.MultiplyPitch(musicPitchMultiplier);
+
+        Debug.Log("Starting timer.");
+        // wait for timer to go off
+        yield return new WaitForSeconds(secondsActivated * Time.timeScale);
+        Debug.Log("Exiting timer");
+
+        // reset
+        Time.timeScale = originalTimeScale;
+        MultiplyXSpeed(1f / playerSpeedMultiplier);
+        MultiplyYSpeed(1f / playerSpeedMultiplier);
+        MultiplyFireRate(1f / playerFireRateMultiplier);
+        musicPlayer.MultiplyPitch(1f / musicPitchMultiplier);
     }
 
     // getters
