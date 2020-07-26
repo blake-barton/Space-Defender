@@ -61,4 +61,9 @@ public class MusicPlayer : MonoBehaviour
         ChangeTrack((int)TrackEnumerator.gameOver);
         audioSource.loop = false;
     }
+
+    public void MultiplyPitch(float pitchMultiplier)
+    {
+        audioSource.pitch *= pitchMultiplier;
+    }
 }

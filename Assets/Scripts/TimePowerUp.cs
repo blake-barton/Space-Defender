@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class TimePowerUp : MonoBehaviour
 {
+    // config variables
     [SerializeField] float newTimeScale = 0.5f;
     [SerializeField] float playerSpeedMultiplier = 2f;
     [SerializeField] float playerFireRateMultiplier = 2f;
     [SerializeField] float secondsActivated = 5f;
+    [SerializeField] float musicPitchMultiplier = .5f;
+
+    // cached references
+    MusicPlayer musicPlayer;
+
+    private void Start()
+    {
+        musicPlayer = FindObjectOfType<MusicPlayer>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,5 +33,6 @@ public class TimePowerUp : MonoBehaviour
         player.MultiplyXSpeed(playerSpeedMultiplier);
         player.MultiplyYSpeed(playerSpeedMultiplier);
         player.MultiplyFireRate(playerFireRateMultiplier);
+        musicPlayer.MultiplyPitch(musicPitchMultiplier);
     }
 }
