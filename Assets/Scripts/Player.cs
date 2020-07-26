@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     // config variables
     [Header("Player Config")]
     [SerializeField] int health = 3;
+    [SerializeField] int maxHealth = 3;
     [SerializeField] float xSpeed = 10f;
     [SerializeField] float ySpeed = 10f;
 
@@ -243,8 +244,18 @@ public class Player : MonoBehaviour
     {
         ySpeed *= speedFactor;
     }
+
     public void MultiplyFireRate(float rateFactor)
     {
         fireRate *= rateFactor;
     }
+
+    public void AddHealth(int healthIncrease)
+    {
+        if (health < maxHealth)
+        {
+            health += healthIncrease;
+        }
+    }
+
 }
