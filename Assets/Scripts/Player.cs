@@ -175,4 +175,8 @@ public class Player : MonoBehaviour
     {
         ySpeed *= speedFactor;
     }
+    public void MultiplyFireRate(float rateFactor)
+    {
+        fireRate *= rateFactor;
+    }
 }
