@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     float xMax;
     float yMin;
     float yMax;
+    float startingTimeScale;
+    float startingMusicPitch;
 
     // cached references
     Camera gameCamera;
@@ -51,6 +53,9 @@ public class Player : MonoBehaviour
         SetUpMoveBoundaries();
         sceneLoader = FindObjectOfType<SceneLoader>();
         musicPlayer = FindObjectOfType<MusicPlayer>();
+
+        startingTimeScale = Time.timeScale;
+        startingMusicPitch = musicPlayer.GetPitch();
     }
 
 
@@ -154,6 +159,8 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        Time.timeScale = startingTimeScale;                                                                // reset timescale
+        musicPlayer.SetPitch(startingMusicPitch);                                                          // reset music pitch
         healthBlocks[0].enabled = false;                                                                   // hide last health block
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);                           // play death audio
         GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);           // play explosion effect
