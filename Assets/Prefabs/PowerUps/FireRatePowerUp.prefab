@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a1151a97499e54e92523e00fd4128d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFireRateMultiplier: 3
+  secondsActivated: 10
