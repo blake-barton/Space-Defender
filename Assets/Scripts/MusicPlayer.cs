@@ -67,11 +67,18 @@ public class MusicPlayer : MonoBehaviour
         audioSource.pitch *= pitchMultiplier;
     }
 
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
+
+    // getters
     public float GetPitch()
     {
         return audioSource.pitch;
     }
 
+    // setters
     public void SetPitch(float newPitch)
     {
         audioSource.pitch = newPitch;
