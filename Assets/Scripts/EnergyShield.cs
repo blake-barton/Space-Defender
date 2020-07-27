@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnergyShield : MonoBehaviour
 {
     // config variables
-    [SerializeField] int hitsToDestroy = 3;
+    [SerializeField] int health = 3;
+    [SerializeField] int maxHealth = 3;
 
     // cached references
     Player player;
@@ -14,6 +14,7 @@ public class EnergyShield : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetUpSingleton();
         player = FindObjectOfType<Player>();
     }
 
@@ -28,12 +29,29 @@ public class EnergyShield : MonoBehaviour
         transform.position = player.transform.position;
     }
 
+    private void SetUpSingleton()
+    {
+        // if there's already a shield, destroy this one
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            FindObjectOfType<EnergyShield>().IncreaseHealth(maxHealth);     // NON-FUNCTIONAL IDK WHY: increase the existing shield's health by the max health (essentially stacking effects)
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void IncreaseHealth(int healthIncrease)
+    {
+        Debug.Log("Health increased");
+        health += healthIncrease;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Energy shield hit: " + collision.gameObject.name + " | health = " + hitsToDestroy);
-        hitsToDestroy--;
+        Debug.Log("Energy shield hit: " + collision.gameObject.name + " | health = " + health);
+        health--;
 
-        if (hitsToDestroy <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
