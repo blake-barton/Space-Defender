@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2094751512599110110}
   - component: {fileID: -3614173174211326257}
   - component: {fileID: 872398226182488324}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnergyShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e9f2950118bef4d9128c485aa409d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsToDestroy: 3
