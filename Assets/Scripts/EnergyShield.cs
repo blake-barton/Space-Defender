@@ -34,16 +34,16 @@ public class EnergyShield : MonoBehaviour
         // if there's already a shield, destroy this one
         if (FindObjectsOfType(GetType()).Length > 1)
         {
-            FindObjectOfType<EnergyShield>().IncreaseHealth(maxHealth);     // NON-FUNCTIONAL IDK WHY: increase the existing shield's health by the max health (essentially stacking effects)
             gameObject.SetActive(false);
             Destroy(gameObject);
+            FindObjectOfType<EnergyShield>().IncreaseHealth(maxHealth);     // NON-FUNCTIONAL IDK WHY: increase the existing shield's health by the max health (essentially stacking effects)
         }
     }
 
-    private void IncreaseHealth(int healthIncrease)
+    public void IncreaseHealth(int healthIncrease)
     {
-        Debug.Log("Health increased");
         health += healthIncrease;
+        Debug.Log("Health increased");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
