@@ -11,6 +11,11 @@ public class TimePowerUp : MonoBehaviour
     [SerializeField] float secondsActivated = 5f;
     [SerializeField] float musicPitchMultiplier = .5f;
 
+    private void Start()
+    {
+        SetUpSingleton();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object
@@ -21,5 +26,15 @@ public class TimePowerUp : MonoBehaviour
 
         // trigger the powerup
         player.TriggerSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated);
+    }
+
+    private void SetUpSingleton()
+    {
+        // if there's already a powerup, destroy this one
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 }

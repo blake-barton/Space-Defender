@@ -36,7 +36,7 @@ public class EnergyShield : MonoBehaviour
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
-            FindObjectOfType<EnergyShield>().IncreaseHealth(maxHealth);     // NON-FUNCTIONAL IDK WHY: increase the existing shield's health by the max health (essentially stacking effects)
+            FindObjectOfType<EnergyShield>().IncreaseHealth(maxHealth);
         }
     }
 
