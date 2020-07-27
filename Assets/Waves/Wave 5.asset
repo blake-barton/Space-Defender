@@ -18,5 +18,5 @@ MonoBehaviour:
     type: 3}
   timeBetweenSpawns: 0.2
   spawnTimeRandomFactor: 0.3
-  enemyCountInWave: 10
+  enemyCountInWave: 1
   enemySpeed: 10
