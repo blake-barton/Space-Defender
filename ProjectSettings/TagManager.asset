@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerProjectile
   - EnemyProjectile
+  - TimePowerUp
   layers:
   - Default
   - TransparentFX
