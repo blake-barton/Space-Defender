@@ -102,8 +102,8 @@ public class EnemyRebel : MonoBehaviour
             // get a random powerup index
             int powerUpIndex = UnityEngine.Random.Range(0, powerUps.Length);
 
-            // check that player doesn't already have that powerup
-            if (!powerUps[powerUpIndex].CompareTag(player.GetCurrentPowerUp()))
+            // check that player doesn't already have that powerup activated
+            if (!player.GetCurrentPowerUps().Contains(powerUps[powerUpIndex].tag))
             {
                 // spawn the powerup
                 Instantiate(powerUps[powerUpIndex], transform.position, Quaternion.Euler(0, 0, 0));

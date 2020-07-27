@@ -22,7 +22,7 @@ public class TimePowerUp : MonoBehaviour
         if (!player) { return; }                                        // return if the collision isn't a player
 
         // set the current player's powerup to time powerup
-        player.SetCurrentPowerUp(tag);
+        player.AddCurrentPowerUp(tag);
 
         // trigger the powerup
         player.TriggerSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated);
@@ -30,7 +30,7 @@ public class TimePowerUp : MonoBehaviour
 
     private void SetUpSingleton()
     {
-        // if there's already a powerup, destroy this one
+        // if there's already a powerup on screen, destroy this one
         if (FindObjectsOfType(GetType()).Length > 1)
         {
             gameObject.SetActive(false);

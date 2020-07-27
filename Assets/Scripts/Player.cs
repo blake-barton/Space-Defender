@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] Image[] healthBlocks;
 
     [Header("PowerUps")]
-    [SerializeField] string currentPowerup = "null";
+    [SerializeField] List<string> currentPowerUps = new List<string>();
+
 
     // coroutines
     Coroutine firingCoroutine;
@@ -193,7 +194,7 @@ public class Player : MonoBehaviour
         Debug.Log("Exiting timer");
 
         // unset current power up
-        currentPowerup = "null";
+        currentPowerUps.Remove("TimePowerUp");
 
         // reset
         Time.timeScale = originalTimeScale;
@@ -215,6 +216,9 @@ public class Player : MonoBehaviour
         // wait for timer to go off
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
 
+        // unset current power up
+        currentPowerUps.Remove("FireRatePowerUp");
+
         // reset
         MultiplyFireRate(1f / fireRateMultiplier);
     }
@@ -232,6 +236,9 @@ public class Player : MonoBehaviour
         // wait for timer
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
 
+        // unset current power up
+        currentPowerUps.Remove("SpeedPowerUp");
+
         // reset 
         MultiplyXSpeed(1f / speedMultiplier);
         MultiplyYSpeed(1f / speedMultiplier);
@@ -246,9 +253,9 @@ public class Player : MonoBehaviour
     {
         return ySpeed;
     }
-    public string GetCurrentPowerUp()
+    public List<string> GetCurrentPowerUps()
     {
-        return currentPowerup;
+        return currentPowerUps;
     }
 
     // setters
@@ -271,8 +278,8 @@ public class Player : MonoBehaviour
             health += healthIncrease;
         }
     }
-    public void SetCurrentPowerUp(string newPowerUp)
+    public void AddCurrentPowerUp(string newPowerUp)
     {
-        currentPowerup = newPowerUp;
+        currentPowerUps.Add(newPowerUp);
     }
 }
