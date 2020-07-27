@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +19,14 @@ public class Player : MonoBehaviour
 
     [Header("DeathFX")]
     [SerializeField] AudioClip deathAudio;
-
     [SerializeField] GameObject explosionFX;
     [SerializeField] float durationOfExplosion = 1f;
 
     [Header("Health Bar")]
     [SerializeField] Image[] healthBlocks;
+
+    [Header("PowerUps")]
+    [SerializeField] string currentPowerup = "null";
 
     // coroutines
     Coroutine firingCoroutine;
@@ -183,6 +184,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
         Debug.Log("Exiting timer");
 
+        // unset current power up
+        currentPowerup = "null";
+
         // reset
         Time.timeScale = originalTimeScale;
         MultiplyXSpeed(1f / playerSpeedMultiplier);
@@ -234,6 +238,10 @@ public class Player : MonoBehaviour
     {
         return ySpeed;
     }
+    public string GetCurrentPowerUp()
+    {
+        return currentPowerup;
+    }
 
     // setters
     public void MultiplyXSpeed(float speedFactor)
@@ -244,12 +252,10 @@ public class Player : MonoBehaviour
     {
         ySpeed *= speedFactor;
     }
-
     public void MultiplyFireRate(float rateFactor)
     {
         fireRate *= rateFactor;
     }
-
     public void AddHealth(int healthIncrease)
     {
         if (health < maxHealth)
@@ -257,5 +263,8 @@ public class Player : MonoBehaviour
             health += healthIncrease;
         }
     }
-
+    public void SetCurrentPowerUp(string newPowerUp)
+    {
+        currentPowerup = newPowerUp;
+    }
 }

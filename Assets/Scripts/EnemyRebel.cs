@@ -32,11 +32,13 @@ public class EnemyRebel : MonoBehaviour
 
     // cached references
     GameSession gameSession;
+    Player player;
 
     // Start is called before the first frame update
     void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        player = FindObjectOfType<Player>();
         shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
@@ -100,8 +102,12 @@ public class EnemyRebel : MonoBehaviour
             // get a random powerup index
             int powerUpIndex = UnityEngine.Random.Range(0, powerUps.Length);
 
-            // spawn the powerup
-            Instantiate(powerUps[powerUpIndex], transform.position, Quaternion.Euler(0, 0, 0));
+            // check that player doesn't already have that powerup
+            if (!powerUps[powerUpIndex].CompareTag(player.GetCurrentPowerUp()))
+            {
+                // spawn the powerup
+                Instantiate(powerUps[powerUpIndex], transform.position, Quaternion.Euler(0, 0, 0));
+            }
         }
     }
 }

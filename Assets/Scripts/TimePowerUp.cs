@@ -16,6 +16,10 @@ public class TimePowerUp : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object
         if (!player) { return; }                                        // return if the collision isn't a player
 
+        // set the current player's powerup to time powerup
+        player.SetCurrentPowerUp(tag);
+
+        // trigger the powerup
         player.TriggerSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated);
     }
 }
