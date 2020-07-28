@@ -170,3 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyShield: {fileID: 3356876636680298349, guid: c278273b6fa996547b10167bbf3210f2,
     type: 3}
+  activateAudio: {fileID: 8300000, guid: a7c4f25da67d4b5438e16133d8276c55, type: 3}
+  activateAudioVolume: 0.5
