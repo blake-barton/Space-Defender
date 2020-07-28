@@ -15,18 +15,21 @@ public class EnergyShield : MonoBehaviour
 
     // cached references
     Player player;
+    ShieldCountUI shieldCountUI;
 
     // Start is called before the first frame update
     void Start()
     {
         SetUpSingleton();
         player = FindObjectOfType<Player>();
+        shieldCountUI = FindObjectOfType<ShieldCountUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
         LockPositionToPlayer();
+        shieldCountUI.UpdateShieldCountText(health);
     }
 
     private void LockPositionToPlayer()
@@ -60,6 +63,7 @@ public class EnergyShield : MonoBehaviour
 
         if (health <= 0)
         {
+            shieldCountUI.UpdateShieldCountText(health);    // need this to get '0' to display
             Destroy(gameObject);
         }
     }
