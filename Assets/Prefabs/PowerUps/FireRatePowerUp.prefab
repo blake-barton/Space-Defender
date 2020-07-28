@@ -170,3 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerFireRateMultiplier: 3
   secondsActivated: 10
+  activateAudio: {fileID: 8300000, guid: ed5301b57df1cd443b65bc2b910a353b, type: 3}
+  activateAudioVolume: 0.975
