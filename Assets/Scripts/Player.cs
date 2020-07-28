@@ -193,10 +193,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
         Debug.Log("Exiting timer");
 
-        // play deactivate audio
-        AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
-        Debug.Log(deactivateAudio.name);
-
         // unset current power up
         currentPowerUps.Remove("TimePowerUp");
 
@@ -206,6 +202,10 @@ public class Player : MonoBehaviour
         MultiplyYSpeed(1f / playerSpeedMultiplier);
         MultiplyFireRate(1f / playerFireRateMultiplier);
         musicPlayer.MultiplyPitch(1f / musicPitchMultiplier);
+
+        // play deactivate audio
+        AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
+        Debug.Log(deactivateAudio.name);
     }
 
     public void TriggerFireRateIncrease(float playerFireRateMultiplier, float secondsActivated)
