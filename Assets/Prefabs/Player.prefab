@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  xSpeed: 10
-  ySpeed: 10
+  maxHealth: 3
+  xSpeed: 15
+  ySpeed: 15
   fireRate: 5
   playerLaser: {fileID: 697299738258700229, guid: 26d83900b83c3a644a977459cfb5ba9d,
     type: 3}
@@ -112,6 +113,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentPowerUps: []
 --- !u!61 &7451235765972916792
 BoxCollider2D:
   m_ObjectHideFlags: 0
