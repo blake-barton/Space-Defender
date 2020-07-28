@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class SpeedPowerUp : MonoBehaviour
 {
+    [Header("PowerUp Config")]
     [SerializeField] float speedFactor = 2f;
     [SerializeField] float secondsActivated = 15f;
+
+    [Header("Effects")]
+    [SerializeField] AudioClip activateAudio;
+    [SerializeField] [Range(0, 1)] float activateAudioVolume = .5f;
 
     private void Start()
     {
@@ -21,6 +26,9 @@ public class SpeedPowerUp : MonoBehaviour
     {
         Player player = collision.gameObject.GetComponent<Player>();    // get the player object
         if (!player) { return; }                                        // return if the collision isn't a player
+
+        // play activate sound
+        AudioSource.PlayClipAtPoint(activateAudio, Camera.main.transform.position, activateAudioVolume);
 
         // set the current player's powerup to time powerup
         player.AddCurrentPowerUp(tag);

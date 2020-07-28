@@ -170,3 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedFactor: 2
   secondsActivated: 10
+  activateAudio: {fileID: 8300000, guid: ee995d62e13dd3f48b288b97372b286b, type: 3}
+  activateAudioVolume: 0.5
