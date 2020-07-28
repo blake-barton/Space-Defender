@@ -114,6 +114,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentPowerUps: []
+  afterburnerTrail: {fileID: 8060103790652125452, guid: d79b16bfbf490f840889ad2d770206be,
+    type: 3}
 --- !u!61 &7451235765972916792
 BoxCollider2D:
   m_ObjectHideFlags: 0

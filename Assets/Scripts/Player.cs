@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     [Header("PowerUps")]
     [SerializeField] List<string> currentPowerUps = new List<string>();
-
+    [SerializeField] GameObject afterburnerTrail;
 
     // coroutines
     Coroutine firingCoroutine;
@@ -237,6 +237,9 @@ public class Player : MonoBehaviour
         MultiplyXSpeed(speedMultiplier);
         MultiplyYSpeed(speedMultiplier);
 
+        // spawn afterburner
+        var afterburner = Instantiate(afterburnerTrail, transform.position, transform.rotation);
+
         // wait for timer
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
 
@@ -246,6 +249,9 @@ public class Player : MonoBehaviour
         // reset 
         MultiplyXSpeed(1f / speedMultiplier);
         MultiplyYSpeed(1f / speedMultiplier);
+
+        // destroy afterburner
+        Destroy(afterburner);
     }
 
     // getters
