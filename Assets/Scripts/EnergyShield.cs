@@ -5,8 +5,13 @@ using UnityEngine;
 public class EnergyShield : MonoBehaviour
 {
     // config variables
+    [Header("Config Values")]
     [SerializeField] int health = 3;
     [SerializeField] int maxHealth = 3;
+
+    [Header("Effects")]
+    [SerializeField] AudioClip deactivateAudio;
+    [SerializeField] float deactivateAudioVolume = 0.5f;
 
     // cached references
     Player player;
@@ -54,6 +59,7 @@ public class EnergyShield : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
         }
     }
 }
