@@ -173,3 +173,7 @@ MonoBehaviour:
   playerFireRateMultiplier: 2
   secondsActivated: 5
   musicPitchMultiplier: 0.5
+  activateAudio: {fileID: 8300000, guid: 623065ac31e4cbc4e9b9071627ba7e4c, type: 3}
+  activateAudioVolume: 0.502
+  deactivateAudio: {fileID: 8300000, guid: 6d24fd9b433b96d4193ff5103725b03d, type: 3}
+  deactivateAudioVolume: 1

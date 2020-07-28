@@ -172,11 +172,11 @@ public class Player : MonoBehaviour
     }
 
     // PowerUp functions
-    public void TriggerSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated)
+    public void TriggerSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated, AudioClip deactivateAudio, float deactivateAudioVolume)
     {
-        StartCoroutine(ActivateSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated));
+        StartCoroutine(ActivateSlowTime(newTimeScale, playerSpeedMultiplier, playerFireRateMultiplier, musicPitchMultiplier, secondsActivated, deactivateAudio, deactivateAudioVolume));
     }
-    private IEnumerator ActivateSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated)
+    private IEnumerator ActivateSlowTime(float newTimeScale, float playerSpeedMultiplier, float playerFireRateMultiplier, float musicPitchMultiplier, float secondsActivated, AudioClip deactivateAudio, float deactivateAudioVolume)
     {
         // track current values
         float originalTimeScale = Time.timeScale;
@@ -192,6 +192,10 @@ public class Player : MonoBehaviour
         // wait for timer to go off
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
         Debug.Log("Exiting timer");
+
+        // play deactivate audio
+        AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
+        Debug.Log(deactivateAudio.name);
 
         // unset current power up
         currentPowerUps.Remove("TimePowerUp");
