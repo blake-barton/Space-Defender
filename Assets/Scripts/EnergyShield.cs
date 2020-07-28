@@ -56,10 +56,11 @@ public class EnergyShield : MonoBehaviour
         Debug.Log("Energy shield hit: " + collision.gameObject.name + " | health = " + health);
         health--;
 
+        AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
+
         if (health <= 0)
         {
             Destroy(gameObject);
-            AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
         }
     }
 }
