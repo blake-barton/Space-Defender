@@ -168,3 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bae37bcbce3df34abf07192d4111f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthIncrease: 1
+  activateAudio: {fileID: 8300000, guid: cc52bdfaa7c8bb8469d82e1a8565c505, type: 3}
+  activateAudioVolume: 0.5
