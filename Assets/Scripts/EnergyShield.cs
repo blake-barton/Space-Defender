@@ -57,14 +57,29 @@ public class EnergyShield : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Energy shield hit: " + collision.gameObject.name + " | health = " + health);
-        health--;
 
-        AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
-
-        if (health <= 0)
+        // ion pulse destroys shield instantly
+        if (collision.gameObject.CompareTag("IonPulse"))
         {
-            shieldCountUI.UpdateShieldCountText(health);    // need this to get '0' to display
-            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);    // play damage audio
+            health = 0;
+            Die();
         }
+        else
+        {
+            health--;                                                                                               // decrement health
+            AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);    // play damage audio
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        shieldCountUI.UpdateShieldCountText(health);    // need this to get '0' to display
+        Destroy(gameObject);
     }
 }
