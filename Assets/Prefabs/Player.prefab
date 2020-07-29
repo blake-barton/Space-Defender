@@ -105,6 +105,8 @@ MonoBehaviour:
   playerLaser: {fileID: 697299738258700229, guid: 26d83900b83c3a644a977459cfb5ba9d,
     type: 3}
   fireAudio: {fileID: 8300000, guid: e709453a5ac3a1b439a9c401990d4a33, type: 3}
+  damageTakenAudio: {fileID: 8300000, guid: b9cce62bb8ccc264ba67307eefb5c607, type: 3}
+  damageTakenAudioVolume: 0.5
   deathAudio: {fileID: 8300000, guid: 9ad08404eb4f54e49a9316fb6feb5bf4, type: 3}
   explosionFX: {fileID: 259485080974740212, guid: e7c8d9d5f0fae904ea00607bfab9961e,
     type: 3}

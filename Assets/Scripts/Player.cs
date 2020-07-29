@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject playerLaser;
     [SerializeField] AudioClip fireAudio;
 
+    [Header("Hit Effects")]
+    [SerializeField] AudioClip damageTakenAudio;
+    [SerializeField] [Range(0, 1)] float damageTakenAudioVolume = 0.5f;
+
     [Header("DeathFX")]
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject explosionFX;
@@ -148,6 +152,8 @@ public class Player : MonoBehaviour
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
 
+        
+
         // decrease health on hit
         health -= damageDealer.GetDamage();
 
@@ -155,6 +161,11 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        } 
+        else
+        {
+            // play damaged sound
+            AudioSource.PlayClipAtPoint(damageTakenAudio, Camera.main.transform.position, damageTakenAudioVolume);
         }
     }
 
