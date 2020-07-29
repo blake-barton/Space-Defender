@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         Time.timeScale = startingTimeScale;                                                                // reset timescale
         musicPlayer.SetPitch(startingMusicPitch);                                                          // reset music pitch
         musicPlayer.StopMusic();                                                                           // stop combat music
-        healthBlocks[0].enabled = false;                                                                   // hide last health block
+        UpdateHealthBar();                                                                                 // get rid of health blocks
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);                           // play death audio
         GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);           // play explosion effect
         Destroy(explosion, durationOfExplosion);                                                           // delete the particle effect after a second

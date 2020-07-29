@@ -9,6 +9,7 @@ TagManager:
   - TimePowerUp
   - FireRatePowerUp
   - SpeedPowerUp
+  - IonPulse
   layers:
   - Default
   - TransparentFX
