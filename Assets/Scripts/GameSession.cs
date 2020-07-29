@@ -14,6 +14,7 @@ public class GameSession : MonoBehaviour
     // cached reference
     ScoreDisplay scoreDisplay;
     EnemySpawner enemySpawner;
+    MusicPlayer musicPlayer;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class GameSession : MonoBehaviour
     {
         scoreDisplay = FindObjectOfType<ScoreDisplay>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        musicPlayer = FindObjectOfType<MusicPlayer>();
     }
 
     private void SetUpSingleton()
@@ -50,7 +52,9 @@ public class GameSession : MonoBehaviour
         if (score >= scoreToBeginBoss)
         {
             enemySpawner.SetLoopWaves(false);
+            musicPlayer.StopMusic();
             Instantiate(bossEnemy);
+            musicPlayer.ChangeTrack((int) MusicPlayer.TrackEnumerator.reaper);
         }
     }
 
