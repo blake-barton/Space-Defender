@@ -7,7 +7,7 @@ public class RocketProjectile : MonoBehaviour
     // config variables
     [SerializeField] GameObject explosionFX;
     [SerializeField] AudioClip explosionSound;
-    [SerializeField] float explosionSoundVolume = 0.5f;
+    [SerializeField] [Range(0, 1)] float explosionSoundVolume = 0.5f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

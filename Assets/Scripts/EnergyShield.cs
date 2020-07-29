@@ -11,7 +11,7 @@ public class EnergyShield : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] AudioClip deactivateAudio;
-    [SerializeField] float deactivateAudioVolume = 0.5f;
+    [SerializeField] [Range(0, 1)] float deactivateAudioVolume = 0.5f;
 
     // cached references
     Player player;
