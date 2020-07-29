@@ -8,9 +8,12 @@ public class GameSession : MonoBehaviour
 {
     // config
     [SerializeField] int score = 0;
+    [SerializeField] int scoreToBeginBoss = 1000;
+    [SerializeField] GameObject bossEnemy;
 
     // cached reference
     ScoreDisplay scoreDisplay;
+    EnemySpawner enemySpawner;
 
     private void Awake()
     {
@@ -21,6 +24,7 @@ public class GameSession : MonoBehaviour
     void Start()
     {
         scoreDisplay = FindObjectOfType<ScoreDisplay>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     private void SetUpSingleton()
@@ -41,6 +45,13 @@ public class GameSession : MonoBehaviour
     {
         score += scorePerKill;   // increase score
         scoreDisplay.UpdateTextDisplay();
+
+        // begin boss fight
+        if (score >= scoreToBeginBoss)
+        {
+            enemySpawner.SetLoopWaves(false);
+            Instantiate(bossEnemy);
+        }
     }
 
     public void ResetGame()

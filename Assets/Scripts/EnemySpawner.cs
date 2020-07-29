@@ -59,4 +59,9 @@ public class EnemySpawner : MonoBehaviour
         var currentWave = waveConfigs[waveIndex];
         yield return StartCoroutine(SpawnEnemiesInWave(currentWave));
     }
+
+    public void SetLoopWaves(bool isLooping)
+    {
+        loopWaves = isLooping;
+    }
 }
