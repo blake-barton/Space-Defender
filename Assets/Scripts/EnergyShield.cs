@@ -79,6 +79,7 @@ public class EnergyShield : MonoBehaviour
 
     private void Die()
     {
+        health = 0;                                     // so that continuous contact doesn't bring shield into negatives
         shieldCountUI.UpdateShieldCountText(health);    // need this to get '0' to display
         Destroy(gameObject);
     }

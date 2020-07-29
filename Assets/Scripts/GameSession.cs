@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    // config
+    [Header("Config")]
     [SerializeField] int score = 0;
     [SerializeField] int scoreToBeginBoss = 1000;
     [SerializeField] GameObject bossEnemy;
+
+    [Header("State")]
+    [SerializeField] bool bossFight = false;
 
     // cached reference
     ScoreDisplay scoreDisplay;
@@ -48,13 +51,14 @@ public class GameSession : MonoBehaviour
         score += scorePerKill;   // increase score
         scoreDisplay.UpdateTextDisplay();
 
-        // begin boss fight
-        if (score >= scoreToBeginBoss)
+        // begin boss fight if score high enough and not already in boss fight
+        if (score >= scoreToBeginBoss && !bossFight)
         {
             enemySpawner.SetLoopWaves(false);
             musicPlayer.StopMusic();
             Instantiate(bossEnemy);
             musicPlayer.ChangeTrack((int) MusicPlayer.TrackEnumerator.reaper);
+            bossFight = true;
         }
     }
 
