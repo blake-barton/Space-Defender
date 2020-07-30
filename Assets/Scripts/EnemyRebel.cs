@@ -13,6 +13,7 @@ public class EnemyRebel : MonoBehaviour
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] int scorePerKill = 10;
+    [SerializeField] float firingAngle = 0;
 
     [Header("Effects")]
     [SerializeField] GameObject enemyProjectile;
@@ -55,7 +56,7 @@ public class EnemyRebel : MonoBehaviour
         {
             // spawn laser
             AudioSource.PlayClipAtPoint(fireAudio, Camera.main.transform.position, fireAudioVolume);                 // play firing sound
-            Instantiate(enemyProjectile, transform.position + projectileOffset, transform.rotation);
+            Instantiate(enemyProjectile, transform.position + projectileOffset, Quaternion.Euler(0, 0, firingAngle));
 
             // reset shot counter
             shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
