@@ -128,6 +128,7 @@ MonoBehaviour:
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   scorePerKill: 10
+  firingAngle: 180
   enemyProjectile: {fileID: 8551927977414571030, guid: 80fad7ee10e897c41987904d8d0aae16,
     type: 3}
   fireAudio: {fileID: 8300000, guid: ae61733575d507446841dfb18cae4860, type: 3}
