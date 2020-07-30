@@ -17,7 +17,8 @@ public class MusicPlayer : MonoBehaviour
         mainMenu = 0,
         combat = 1,
         gameOver = 2,
-        reaper = 3
+        reaper = 3,
+        victory = 4
     }
 
     // Awake is called first

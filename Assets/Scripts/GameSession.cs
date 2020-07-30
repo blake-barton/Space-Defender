@@ -54,7 +54,6 @@ public class GameSession : MonoBehaviour
         // begin boss fight if score high enough and not already in boss fight
         if (score >= scoreToBeginBoss && !bossFight)
         {
-            enemySpawner.SetLoopWaves(false);
             musicPlayer.StopMusic();
             Instantiate(bossEnemy);
             musicPlayer.ChangeTrack((int) MusicPlayer.TrackEnumerator.reaper);
