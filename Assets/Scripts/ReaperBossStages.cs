@@ -51,11 +51,9 @@ public class ReaperBossStages : MonoBehaviour
 
     private IEnumerator FlashOnHit()
     {
-        Debug.Log("Color changed");
         spriteRenderer.color = colorFlashOnHit;
         yield return new WaitForSeconds(colorFlashTime);
         
-        Debug.Log("Returning to original color.");
         spriteRenderer.color = originalColor;
     }
 

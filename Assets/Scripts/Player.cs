@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [Header("Hit Effects")]
     [SerializeField] AudioClip damageTakenAudio;
     [SerializeField] [Range(0, 1)] float damageTakenAudioVolume = 0.5f;
+    [SerializeField] Color colorFlashOnHit;
+    [SerializeField] float colorFlashTime = .2f;
 
     [Header("DeathFX")]
     [SerializeField] AudioClip deathAudio;
@@ -44,12 +46,14 @@ public class Player : MonoBehaviour
     float yMax;
     float startingTimeScale;
     float startingMusicPitch;
+    Color originalColor;
 
     // cached references
     Camera gameCamera;
     BoxCollider2D playerCollider;
     SceneLoader sceneLoader;
     MusicPlayer musicPlayer;
+    SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +62,8 @@ public class Player : MonoBehaviour
         SetUpMoveBoundaries();
         sceneLoader = FindObjectOfType<SceneLoader>();
         musicPlayer = FindObjectOfType<MusicPlayer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
 
         startingTimeScale = Time.timeScale;
         startingMusicPitch = musicPlayer.GetPitch();
@@ -152,10 +158,11 @@ public class Player : MonoBehaviour
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
 
-        
-
         // decrease health on hit
         health -= damageDealer.GetDamage();
+
+        // flash color
+        StartCoroutine(FlashOnHit());
 
         // Kill player when health reaches 0
         if (health <= 0)
@@ -167,6 +174,14 @@ public class Player : MonoBehaviour
             // play damaged sound
             AudioSource.PlayClipAtPoint(damageTakenAudio, Camera.main.transform.position, damageTakenAudioVolume);
         }
+    }
+
+    private IEnumerator FlashOnHit()
+    {
+        spriteRenderer.color = colorFlashOnHit;
+        yield return new WaitForSeconds(colorFlashTime);
+
+        spriteRenderer.color = originalColor;
     }
 
     private void Die()
