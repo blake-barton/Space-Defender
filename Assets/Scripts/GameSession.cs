@@ -11,13 +11,16 @@ public class GameSession : MonoBehaviour
     [SerializeField] int scoreToBeginBoss = 1000;
     [SerializeField] GameObject bossEnemy;
 
-    [Header("State")]
+    [Header("Boss Settings")]
     [SerializeField] bool bossFight = false;
+    [SerializeField] float startingXPos = .5f;
+    [SerializeField] float startingYPos = 1f;
 
     // cached reference
     ScoreDisplay scoreDisplay;
     EnemySpawner enemySpawner;
     MusicPlayer musicPlayer;
+    Camera gameCamera;
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class GameSession : MonoBehaviour
         scoreDisplay = FindObjectOfType<ScoreDisplay>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
         musicPlayer = FindObjectOfType<MusicPlayer>();
+        gameCamera = Camera.main;
     }
 
     private void SetUpSingleton()
@@ -54,11 +58,21 @@ public class GameSession : MonoBehaviour
         // begin boss fight if score high enough and not already in boss fight
         if (score >= scoreToBeginBoss && !bossFight)
         {
-            musicPlayer.StopMusic();
-            Instantiate(bossEnemy);
-            musicPlayer.ChangeTrack((int) MusicPlayer.TrackEnumerator.reaper);
-            bossFight = true;
+            StartBossFight();
         }
+    }
+
+    private void StartBossFight()
+    {
+        enemySpawner.StopSpawning();                                                       // stop waves from spawning
+        musicPlayer.ChangeTrack((int)MusicPlayer.TrackEnumerator.reaper);                      // change to boss music
+
+        float yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, startingYPos, 0)).y;        // reaper y coordinate
+        float xMax = gameCamera.ViewportToWorldPoint(new Vector3(startingXPos, 0, 0)).x;
+        Vector3 spawnPosition = new Vector3(xMax, yMax, 0);
+
+        Instantiate(bossEnemy, spawnPosition, Quaternion.identity);                             // spawn reaper
+        bossFight = true;
     }
 
     public void ResetGame()

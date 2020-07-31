@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreToBeginBoss: 1000
+  scoreToBeginBoss: 100
   bossEnemy: {fileID: 5593730306335264290, guid: 5dd467431c72e4344b4a448c0c2e070c,
     type: 3}
+  bossFight: 0
+  startingXPos: 0.5
+  startingYPos: 3

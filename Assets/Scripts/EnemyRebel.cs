@@ -111,4 +111,10 @@ public class EnemyRebel : MonoBehaviour
             }
         }
     }
+
+    // getters
+    public int GetHealth()
+    {
+        return health;
+    }
 }

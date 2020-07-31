@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3514350501785080613}
   - component: {fileID: 4106152521484336874}
   - component: {fileID: -6256595501445477191}
+  - component: {fileID: 8732885902920088101}
   m_Layer: 9
   m_Name: Reaper
   m_TagString: Untagged
@@ -186,4 +187,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  waypointReached: 0
+--- !u!114 &8732885902920088101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593730306335264290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6db7f287400554dbb82078325f17a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPercentageToBeginWaves: 0.75
+  stageChanged: 0

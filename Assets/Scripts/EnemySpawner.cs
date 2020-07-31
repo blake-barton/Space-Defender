@@ -12,7 +12,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] bool spawnRandomWaves = false;
 
     // Start is called before the first frame update
-    IEnumerator Start()
+    void Start()
+    {
+        StartCoroutine(StartSpawning());
+    }
+
+    IEnumerator StartSpawning()
     {
         if (spawnRandomWaves)
         {
@@ -27,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
             do
             {
                 yield return StartCoroutine(SpawnAllWaves());
-            } 
+            }
             while (loopWaves);
         }
     }
@@ -63,5 +68,16 @@ public class EnemySpawner : MonoBehaviour
     public void SetLoopWaves(bool isLooping)
     {
         loopWaves = isLooping;
+    }
+
+    public void RestartSpawning()
+    {
+        loopWaves = true;
+        StartCoroutine(StartSpawning());
+    }
+
+    public void StopSpawning()
+    {
+        StopAllCoroutines();
     }
 }
