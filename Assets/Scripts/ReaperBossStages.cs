@@ -5,13 +5,16 @@ using UnityEngine;
 public class ReaperBossStages : MonoBehaviour
 {
     // config variables
+    [Header("Staging")]
     [SerializeField] float healthPercentageToBeginWaves = .5f;
     [SerializeField] float secondsToHoldFire = 4f;
+    [SerializeField] bool stageChanged = false;
+
+    [Header("Hit Effects")]
     [SerializeField] Color colorFlashOnHit;
     [SerializeField] float colorFlashTime = .5f;
-
-    // state
-    [SerializeField] bool stageChanged = false;
+    [SerializeField] AudioClip[] hitAudioClips;
+    [SerializeField] float hitAudioVolume = .5f;
 
     // utility
     float healthAsFloat;
@@ -59,6 +62,10 @@ public class ReaperBossStages : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // play a random audio clip
+        AudioSource.PlayClipAtPoint(hitAudioClips[Random.Range(0, hitAudioClips.Length)], Camera.main.transform.position, hitAudioVolume);
+
+        // flash color
         StartCoroutine(FlashOnHit());
     }
 }

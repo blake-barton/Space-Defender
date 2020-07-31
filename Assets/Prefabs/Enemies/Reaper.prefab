@@ -201,6 +201,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPercentageToBeginWaves: 0.6
   secondsToHoldFire: 5
+  stageChanged: 0
   colorFlashOnHit: {r: 1, g: 0.504717, b: 0.504717, a: 1}
   colorFlashTime: 0.2
-  stageChanged: 0
+  hitAudioClips:
+  - {fileID: 8300000, guid: 3711153a1cdfeac4da917a1dd54e23ee, type: 3}
+  - {fileID: 8300000, guid: 0b781e639216a24459676b65e0a04c23, type: 3}
+  - {fileID: 8300000, guid: 37ecc7cec4e42464dad3422dc335c99e, type: 3}
+  - {fileID: 8300000, guid: 4f60b7338e02ad9498af5ba19ccfdfaa, type: 3}
+  - {fileID: 8300000, guid: d87e1b29e1069ad41836ce38d1f12837, type: 3}
+  - {fileID: 8300000, guid: 7a28088d97b6c1540adeff3e791f9324, type: 3}
+  hitAudioVolume: 0.5
