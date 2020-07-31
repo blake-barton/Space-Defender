@@ -7,6 +7,8 @@ public class ReaperBossStages : MonoBehaviour
     // config variables
     [SerializeField] float healthPercentageToBeginWaves = .5f;
     [SerializeField] float secondsToHoldFire = 4f;
+    [SerializeField] Color colorFlashOnHit;
+    [SerializeField] float colorFlashTime = .5f;
 
     // state
     [SerializeField] bool stageChanged = false;
@@ -14,14 +16,18 @@ public class ReaperBossStages : MonoBehaviour
     // utility
     float healthAsFloat;
     float maxHealth;
+    Color originalColor;
 
     // cached references
     EnemyRebel reaperEnemyComponent;
     EnemySpawner enemySpawner;
+    SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         reaperEnemyComponent = GetComponent<EnemyRebel>();
         maxHealth = reaperEnemyComponent.GetHealth();
@@ -41,5 +47,20 @@ public class ReaperBossStages : MonoBehaviour
     {
         stageChanged = true;
         enemySpawner.RestartSpawning();
+    }
+
+    private IEnumerator FlashOnHit()
+    {
+        Debug.Log("Color changed");
+        spriteRenderer.color = colorFlashOnHit;
+        yield return new WaitForSeconds(colorFlashTime);
+        
+        Debug.Log("Returning to original color.");
+        spriteRenderer.color = originalColor;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine(FlashOnHit());
     }
 }

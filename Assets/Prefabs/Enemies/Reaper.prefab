@@ -199,6 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6db7f287400554dbb82078325f17a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPercentageToBeginWaves: 0.75
+  healthPercentageToBeginWaves: 0.6
   secondsToHoldFire: 5
+  colorFlashOnHit: {r: 1, g: 0.504717, b: 0.504717, a: 1}
+  colorFlashTime: 0.2
   stageChanged: 0
