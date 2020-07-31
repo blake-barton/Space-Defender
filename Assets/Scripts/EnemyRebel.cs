@@ -112,6 +112,12 @@ public class EnemyRebel : MonoBehaviour
         }
     }
 
+    // setters
+    public void SetShotCounter(float newTime)
+    {
+        shotCounter = newTime;
+    }
+
     // getters
     public int GetHealth()
     {

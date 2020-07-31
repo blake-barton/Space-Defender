@@ -200,4 +200,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPercentageToBeginWaves: 0.75
+  secondsToHoldFire: 5
   stageChanged: 0

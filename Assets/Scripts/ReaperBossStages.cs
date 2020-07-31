@@ -6,6 +6,7 @@ public class ReaperBossStages : MonoBehaviour
 {
     // config variables
     [SerializeField] float healthPercentageToBeginWaves = .5f;
+    [SerializeField] float secondsToHoldFire = 4f;
 
     // state
     [SerializeField] bool stageChanged = false;
@@ -24,11 +25,13 @@ public class ReaperBossStages : MonoBehaviour
         enemySpawner = FindObjectOfType<EnemySpawner>();
         reaperEnemyComponent = GetComponent<EnemyRebel>();
         maxHealth = reaperEnemyComponent.GetHealth();
+        reaperEnemyComponent.SetShotCounter(secondsToHoldFire);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // restarting enemy waves
         healthAsFloat = reaperEnemyComponent.GetHealth();
         if ((healthAsFloat <= maxHealth * healthPercentageToBeginWaves) && !stageChanged)
         RestartEnemyWaves();
