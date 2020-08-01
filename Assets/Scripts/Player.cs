@@ -76,7 +76,6 @@ public class Player : MonoBehaviour
         Move();
         Fire();
         UpdateHealthBar();
-        Debug.Log(health);
     }
 
     private void UpdateHealthBar()
