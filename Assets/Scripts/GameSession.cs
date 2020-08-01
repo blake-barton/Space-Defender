@@ -16,6 +16,10 @@ public class GameSession : MonoBehaviour
     [SerializeField] float startingXPos = .5f;
     [SerializeField] float startingYPos = 1f;
 
+    // utility
+    float originalTimeScale;
+    float startingMusicPitch;
+
     // cached reference
     ScoreDisplay scoreDisplay;
     EnemySpawner enemySpawner;
@@ -34,6 +38,11 @@ public class GameSession : MonoBehaviour
         enemySpawner = FindObjectOfType<EnemySpawner>();
         musicPlayer = FindObjectOfType<MusicPlayer>();
         gameCamera = Camera.main;
+        originalTimeScale = Time.timeScale;
+        startingMusicPitch = musicPlayer.GetPitch();
+
+        Debug.Log("Timescale: " + Time.timeScale);
+        Debug.Log("Pitch: " + startingMusicPitch);
     }
 
     private void SetUpSingleton()
@@ -83,5 +92,11 @@ public class GameSession : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    public void ResetTime()
+    {
+        Time.timeScale = originalTimeScale;
+        musicPlayer.SetPitch(startingMusicPitch);
     }
 }

@@ -87,7 +87,7 @@ public class EnemyRebel : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
         Destroy(gameObject);
         SpawnPowerUp();
@@ -98,6 +98,7 @@ public class EnemyRebel : MonoBehaviour
 
         if (GetComponent<ReaperBossStages>())
         {
+            gameSession.ResetTime();
             enemySpawner.StopSpawning();
             sceneLoader.LoadVictoryScene();
         }

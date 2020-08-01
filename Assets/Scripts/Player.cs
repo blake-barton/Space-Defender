@@ -227,7 +227,7 @@ public class Player : MonoBehaviour
         MultiplyXSpeed(1f / playerSpeedMultiplier);
         MultiplyYSpeed(1f / playerSpeedMultiplier);
         MultiplyFireRate(1f / playerFireRateMultiplier);
-        musicPlayer.MultiplyPitch(1f / musicPitchMultiplier);
+        musicPlayer.SetPitch(startingMusicPitch);
 
         // play deactivate audio
         AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
