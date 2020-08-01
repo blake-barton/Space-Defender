@@ -51,7 +51,6 @@ public class EnergyShield : MonoBehaviour
     public void IncreaseHealth(int healthIncrease)
     {
         health += healthIncrease;
-        Debug.Log("Health increased");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

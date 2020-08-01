@@ -98,6 +98,7 @@ public class EnemyRebel : MonoBehaviour
 
         if (GetComponent<ReaperBossStages>())
         {
+            player.SetHealth(99);
             gameSession.ResetTime();
             enemySpawner.StopSpawning();
             sceneLoader.LoadVictoryScene();

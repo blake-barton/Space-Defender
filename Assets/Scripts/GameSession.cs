@@ -40,9 +40,6 @@ public class GameSession : MonoBehaviour
         gameCamera = Camera.main;
         originalTimeScale = Time.timeScale;
         startingMusicPitch = musicPlayer.GetPitch();
-
-        Debug.Log("Timescale: " + Time.timeScale);
-        Debug.Log("Pitch: " + startingMusicPitch);
     }
 
     private void SetUpSingleton()

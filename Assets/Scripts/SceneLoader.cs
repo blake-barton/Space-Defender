@@ -20,12 +20,6 @@ public class SceneLoader : MonoBehaviour
         musicPlayer = FindObjectOfType<MusicPlayer>();
     }
 
-    private void Update()
-    {
-        Debug.Log("Timescale: " + Time.timeScale);
-        Debug.Log("Pitch: " + musicPlayer.GetPitch());
-    }
-
     public void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

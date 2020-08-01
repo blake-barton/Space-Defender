@@ -50,7 +50,6 @@ public class ReaperBossStages : MonoBehaviour
         // checking if dead
         if (healthAsFloat <= 0)
         {
-            Debug.Log("dead");
             sceneLoader.LoadVictoryScene();
         }
     }

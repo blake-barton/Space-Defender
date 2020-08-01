@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
         Move();
         Fire();
         UpdateHealthBar();
+        Debug.Log(health);
     }
 
     private void UpdateHealthBar()
@@ -214,10 +215,8 @@ public class Player : MonoBehaviour
         MultiplyFireRate(playerFireRateMultiplier);
         musicPlayer.MultiplyPitch(musicPitchMultiplier);
 
-        Debug.Log("Starting timer.");
         // wait for timer to go off
         yield return new WaitForSeconds(secondsActivated * Time.timeScale);
-        Debug.Log("Exiting timer");
 
         // unset current power up
         currentPowerUps.Remove("TimePowerUp");
@@ -231,7 +230,6 @@ public class Player : MonoBehaviour
 
         // play deactivate audio
         AudioSource.PlayClipAtPoint(deactivateAudio, Camera.main.transform.position, deactivateAudioVolume);
-        Debug.Log(deactivateAudio.name);
     }
 
     public void TriggerFireRateIncrease(float playerFireRateMultiplier, float secondsActivated)
@@ -317,5 +315,9 @@ public class Player : MonoBehaviour
     public void AddCurrentPowerUp(string newPowerUp)
     {
         currentPowerUps.Add(newPowerUp);
+    }
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
     }
 }
