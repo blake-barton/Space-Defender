@@ -56,10 +56,16 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // unique function because it must turn off looping
+    // unique functionS because it must turn off looping
     public void PlayGameOverTrack()
     {
         ChangeTrack((int)TrackEnumerator.gameOver);
+        audioSource.loop = false;
+    }
+    
+    public void PlayVictoryTrack()
+    {
+        ChangeTrack((int)TrackEnumerator.victory);
         audioSource.loop = false;
     }
 

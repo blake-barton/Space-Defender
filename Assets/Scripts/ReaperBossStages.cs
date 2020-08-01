@@ -25,6 +25,7 @@ public class ReaperBossStages : MonoBehaviour
     EnemyRebel reaperEnemyComponent;
     EnemySpawner enemySpawner;
     SpriteRenderer spriteRenderer;
+    SceneLoader sceneLoader;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class ReaperBossStages : MonoBehaviour
         originalColor = spriteRenderer.color;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         reaperEnemyComponent = GetComponent<EnemyRebel>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
         maxHealth = reaperEnemyComponent.GetHealth();
         reaperEnemyComponent.SetShotCounter(secondsToHoldFire);
     }
@@ -44,6 +46,13 @@ public class ReaperBossStages : MonoBehaviour
         healthAsFloat = reaperEnemyComponent.GetHealth();
         if ((healthAsFloat <= maxHealth * healthPercentageToBeginWaves) && !stageChanged)
         RestartEnemyWaves();
+
+        // checking if dead
+        if (healthAsFloat <= 0)
+        {
+            Debug.Log("dead");
+            sceneLoader.LoadVictoryScene();
+        }
     }
 
     private void RestartEnemyWaves()

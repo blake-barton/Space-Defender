@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     // config variables
-    [SerializeField] float secondsToDelayNextScene = 2f;
+    [SerializeField] float secondsToDelayDeathScene = 2f;
+    [SerializeField] float secondsToDelayVictoryScene = 4f;
 
     // cached references
     GameSession gameSession;
@@ -64,10 +65,22 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(DelayLoadGameOver());
     }
 
+    public void LoadVictoryScene()
+    {
+        StartCoroutine(DelayLoadVictory());
+    }
+
     IEnumerator DelayLoadGameOver()
     {
-        yield return new WaitForSeconds(secondsToDelayNextScene);
+        yield return new WaitForSeconds(secondsToDelayDeathScene);
         LoadSceneByName("Death Screen");
         musicPlayer.PlayGameOverTrack();
+    }
+
+    IEnumerator DelayLoadVictory()
+    {
+        yield return new WaitForSeconds(secondsToDelayVictoryScene);
+        LoadSceneByName("Victory Screen");
+        musicPlayer.PlayVictoryTrack();
     }
 }

@@ -34,12 +34,16 @@ public class EnemyRebel : MonoBehaviour
     // cached references
     GameSession gameSession;
     Player player;
+    SceneLoader sceneLoader;
+    EnemySpawner enemySpawner;
 
     // Start is called before the first frame update
     void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
         player = FindObjectOfType<Player>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
         shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
@@ -83,7 +87,7 @@ public class EnemyRebel : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);
         SpawnPowerUp();
@@ -91,6 +95,12 @@ public class EnemyRebel : MonoBehaviour
         Destroy(explosion, durationOfExplosion);                                                          // delete the particle effect after a second
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position, deathAudioVolume);        // play death sound effect
         gameSession.AddToScore(scorePerKill);
+
+        if (GetComponent<ReaperBossStages>())
+        {
+            enemySpawner.StopSpawning();
+            sceneLoader.LoadVictoryScene();
+        }
     }
 
     private void SpawnPowerUp()
