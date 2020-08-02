@@ -134,7 +134,7 @@ MonoBehaviour:
   fireAudio: {fileID: 8300000, guid: 2b2edc70dcc80bb409909e5e2e6582ec, type: 3}
   fireAudioVolume: 0.494
   deathAudio: {fileID: 8300000, guid: be1e0c8fdc423af4eb55aac74eb7e230, type: 3}
-  deathAudioVolume: 0.518
+  deathAudioVolume: 0.425
   explosionFX: {fileID: 259485080974740212, guid: 017bfb8816a4dcb4799378724041264d,
     type: 3}
   durationOfExplosion: 1

@@ -28,8 +28,12 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadFirstScene()
     {
-        gameSession.ResetGame();
-        musicPlayer.ChangeTrack((int)MusicPlayer.TrackEnumerator.mainMenu);
+        // if statement for if the player is starting the game from the death screen.
+        if (gameSession)
+        {
+            gameSession.ResetGame();
+            musicPlayer.ChangeTrack((int)MusicPlayer.TrackEnumerator.mainMenu);
+        }
         SceneManager.LoadScene(0);
     }
 

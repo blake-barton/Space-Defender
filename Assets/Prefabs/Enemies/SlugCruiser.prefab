@@ -132,7 +132,7 @@ MonoBehaviour:
   enemyProjectile: {fileID: 8551927977414571030, guid: 80fad7ee10e897c41987904d8d0aae16,
     type: 3}
   fireAudio: {fileID: 8300000, guid: ae61733575d507446841dfb18cae4860, type: 3}
-  fireAudioVolume: 0.512
+  fireAudioVolume: 0.401
   deathAudio: {fileID: 8300000, guid: 5c798a89497dea9489f2770f0b84da83, type: 3}
   deathAudioVolume: 0.513
   explosionFX: {fileID: 259485080974740212, guid: 017bfb8816a4dcb4799378724041264d,
